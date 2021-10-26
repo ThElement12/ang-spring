@@ -22,6 +22,15 @@ export class ClienteService {
     );
   }
   create(cliente: Cliente): Observable<Cliente>{
-    return this.http.post<Cliente>(this.urlEndpPoint, cliente, {headers: this.httpHeaders})
+    return this.http.post<Cliente>(this.urlEndpPoint, cliente, {headers: this.httpHeaders});
+  }
+  getCliente(id): Observable<Cliente>{
+    return this.http.get<Cliente>(`${this.urlEndpPoint}/${id}`);
+  }
+  update(cliente: Cliente): Observable<Cliente>{
+    return this.http.put<Cliente>(`${this.urlEndpPoint}/${cliente.id}`, cliente, {headers: this.httpHeaders});
+  }
+  delete(id: number): Observable<Cliente>{
+    return this.http.delete<Cliente>(`${this.urlEndpPoint}/${id}`, {headers: this.httpHeaders});  
   }
 }
